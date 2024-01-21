@@ -1,0 +1,15 @@
+{
+    "name": "konrad/php-sample",
+    "autoload": {
+        "psr-4": {
+            "Konrad\\PhpSample\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Konrad Kubrak",
+            "email": "kubrakkonrad@gmail.com"
+        }
+    ],
+    "require": {}
+}

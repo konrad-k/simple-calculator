@@ -1,0 +1,167 @@
+body {
+  margin: 0;
+  padding: 30px 0;
+}
+
+.calculator {
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 12px;
+  width: 294px;
+  max-width: 100%;
+  margin: auto;
+  box-sizing: border-box;
+}
+
+.calculator,
+.calculator input,
+.calculator button {
+  font-family: 'Lato', sans-serif;
+}
+
+.calculator__input,
+.calculator__output {
+  border: 0 none;
+  background-color: transparent;
+  padding: 10px 20px;
+  margin: 20px 0;
+  width: 100%;
+  text-align: right;
+}
+
+.calculator__input {
+  font-size: 30px;
+  color: rgba(196, 208, 187);
+  margin: 25px 0;
+}
+
+.calculator__input:focus {
+  background-color: rgba(255, 255, 255, 0.1);
+  outline: none;
+}
+
+.calculator__output {
+  font-size: 20px;
+  color: rgba(196, 208, 187, 0.5);
+  margin: 25px 0 75px;
+}
+
+.calculator__buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 23px;
+}
+
+.calculator__button {
+  width: calc(25% - 12px);
+  aspect-ratio: 1;
+  box-sizing: border-box;
+  border-radius: 100%;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #a8b39e;
+  border: 0 none;
+  padding: 0;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.calculator__button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.calculator__button:active {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.calculator__button--reset {
+  color: #ce3a31;
+  margin-right: 50%;
+}
+
+.calculator__button--result {
+  background-color: #6e5948;
+  color: #fff;
+  order: 100;
+}
+
+.calculator__button--result:hover {
+  background: #83654d;
+}
+
+.calculator__button--result:active {
+  background: #916b4c;
+}
+
+.calculator__button--operation {
+  color: #bba596;
+}
+
+.calculator__button--number-7 {
+  order: 3;
+}
+
+.calculator__button--number-8 {
+  order: 4;
+}
+
+.calculator__button--number-9 {
+  order: 5;
+}
+
+.calculator__button--number-6 {
+  order: 7;
+}
+
+.calculator__button--number-5 {
+  order: 8;
+}
+
+.calculator__button--number-4 {
+  order: 9;
+}
+
+.calculator__button--number-3 {
+  order: 11;
+}
+
+.calculator__button--number-2 {
+  order: 12;
+}
+
+.calculator__button--number-1 {
+  order: 13;
+}
+
+.calculator__button--number-0 {
+  order: 15;
+  margin-right: 25%;
+  margin-left: 25%;
+}
+
+.calculator__button--operation--plus {
+  order: 14;
+}
+
+.calculator__button--operation--minus {
+  order: 10;
+}
+
+.calculator__button--operation--multiplication {
+  order: 6;
+}
+
+.calculator__button--operation--division {
+  order: 2;
+}
