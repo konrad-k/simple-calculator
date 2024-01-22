@@ -1,5 +1,5 @@
 class Calculator {
-  constructor(options= {element: '.calculator'}) {
+  constructor(options) {
     this.element = document.querySelector(options.element);
     this.a = '';
     this.b = '';
@@ -7,62 +7,70 @@ class Calculator {
     this.result = null;
     this.error = null;
     this.buttons = this.element.querySelectorAll('button');
-    this.operations = { add: '+', subtract: '-', multiply: 'x', divide: '÷' };
+    this.input = this.element.querySelector('input[type="text"]');
+    this.output = this.element.querySelector('output');
+    this.resultInput = this.element.querySelector('input[type="hidden"]');
+    this.operations = { add: '+', subtract: '-', multiply: 'x', divide: '/' };
   }
 
   init() {
     this.buttons.forEach(button => {
       button.addEventListener('click', (event) => {
-        this.actionHandle(event.target.dataset);
+        this.actionHandle(event.target);
       });
+    });
+
+    document.addEventListener('keydown', (event) => {
+      const button = this.element.querySelector('button[aria-keyshortcuts="' + event.key + '"]');
+      if (button) this.actionHandle(button);
     });
   }
 
-  actionHandle(dataset) {
-    if (typeof dataset.number !== 'undefined' && this.operation === null) {
-        this.a = Number(String(this.a) + dataset.number);
-        this.renderA();
-      }
+  actionHandle(target) {
+    if (typeof target.ariaKeyShortcuts === 'string' && target.ariaKeyShortcuts.length === 1 && this.operation === null) {
+      this.a = Number(String(this.a) + target.ariaKeyShortcuts);
+      this.renderA();
+    }
 
-      if (typeof dataset.operation !== 'undefined' && this.operation === null && this.a !== '') {
-        this.operation = dataset.operation;
-        this.renderOperation();
-      }
+    if (typeof target.dataset.operation !== 'undefined' && this.operation === null && this.a !== '') {
+      this.operation = target.dataset.operation;
+      this.renderOperation();
+    }
 
-      if (typeof dataset.operation !== 'undefined' && this.operation !== null && this.a !== '' && this.result !== null) {
-        this.operation = dataset.operation;
-        this.a = this.result;
-        this.b = '';
-        this.result = null;
-        this.renderOperation();
-      }
+    if (typeof target.dataset.operation !== 'undefined' && this.operation !== null && this.a !== '' && this.result !== null) {
+      this.operation = target.dataset.operation;
+      this.a = this.result;
+      this.b = '';
+      this.result = null;
+      this.renderOperation();
+    }
 
-      if (dataset.action === 'result' && this.operation !== null && this.a !== '' && this.result !== null) {
-        this.a = this.result;
-        this.count();
-        this.renderB();
-        this.renderResult();
-      }
+    if ((target.dataset.action === 'result' || target.ariaKeyShortcut === 'Enter') && this.operation !== null && this.a !== '' && this.result !== null) {
+      this.a = this.result;
+      this.count();
+      this.renderB();
+      this.renderResult();
+    }
 
-      if (typeof dataset.number !== 'undefined' && this.operation !== null) {
-        this.b = Number(String(this.b) + dataset.number);
-        this.renderB();
-      }
+    if (typeof target.ariaKeyShortcuts === 'string' && isFinite(Number(target.ariaKeyShortcuts)) && this.operation !== null) {
+      this.b = Number(String(this.b) + target.ariaKeyShortcuts);
+      this.renderB();
+    }
 
-      if (dataset.action === 'result' && this.operation === 'divide' && this.a !== '' && this.b === 0) {
-        this.error = "You can't divide by zero";
-        this.renderError();
-        return;
-      }
+    if (target.dataset.action === 'result' && this.operation === 'divide' && this.a !== '' && this.b === 0) {
+      this.error = "You can't divide by zero";
+      this.renderError();
+      return;
+    }
 
-      if (dataset.action === 'result' && this.operation !== null && this.a !== '' && this.b !== '' && this.result === null) {
-        this.count();
-        this.renderResult();
-      }
+    if (target.dataset.action === 'result' && this.operation !== null && this.a !== '' && this.b !== '' && this.result === null) {
+      this.count();
+      this.renderResult();
+    }
 
-      if (dataset.action === 'reset') {
-        this.reset();
-      }
+    if (target.dataset.action === 'reset') {
+      this.reset();
+    }
   }
 
   add(a, b) {
@@ -95,27 +103,35 @@ class Calculator {
     this.operation = null;
     this.result = null;
     this.error = null;
+    this.resultInput.value = '';
     this.renderResult();
+    this.element.classList.remove('calculator--is-result');
+  }
+
+  getOperator() {
+    return this.operations[this.operation];
   }
 
   renderA() {
-    this.element.querySelector('input').value = String(this.a);
+    this.input.value = String(this.a);
   }
 
   renderB() {
-    this.element.querySelector('input').value = String(this.a) + ' ' + this.operations[this.operation] + ' ' + this.b;
+    this.input.value = String(this.a) + ' ' +  this.getOperator() + ' ' + this.b;
   }
 
   renderOperation() {
-    this.element.querySelector('input').value = String(this.a) + ' ' + this.operations[this.operation];
+    this.input.value = String(this.a) + ' ' +  this.getOperator();
   }
 
   renderResult() {
-    this.element.querySelector('output').innerHTML = this.result;
+    this.element.classList.add('calculator--is-result');
+    this.output.innerHTML = this.result;
+    this.resultInput.value = this.result;
   }
 
   renderError() {
-    this.element.querySelector('output').innerHTML = this.error;
+    this.output.innerHTML = this.error;
   }
 
 }

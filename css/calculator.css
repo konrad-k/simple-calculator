@@ -1,20 +1,27 @@
 body {
   margin: 0;
   padding: 30px 0;
+  font-family: 'Lato', sans-serif;
+  font-size: 16px;
+}
+
+body p {
+  text-align: center;
 }
 
 .calculator {
   width: 100%;
-  height: 100%;
   background-color: #000;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
   padding: 12px;
   width: 294px;
   max-width: 100%;
   margin: auto;
+  box-sizing: border-box;
+}
+
+.calculator>* {
   box-sizing: border-box;
 }
 
@@ -38,7 +45,7 @@ body {
   font-size: 30px;
   color: rgba(196, 208, 187);
   margin: 25px 0;
-  min-height: 36px;
+  min-height: 56px;
 }
 
 .calculator__input:focus {
@@ -50,7 +57,7 @@ body {
   font-size: 20px;
   color: rgba(196, 208, 187, 0.5);
   margin: 25px 0 75px;
-  min-height: 24px;
+  min-height: 44px;
 }
 
 .calculator__buttons {
@@ -62,13 +69,24 @@ body {
   padding: 0;
   margin: 0;
   width: 100%;
+}
+
+.calculator__buttons,
+.calculator__save {
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   padding-top: 23px;
 }
 
+.calculator__save {
+  margin-top: 20px;
+  display: none;
+}
+
+.calculator.calculator--is-result .calculator__save {
+  display: block;
+}
+
 .calculator__button {
-  width: calc(25% - 12px);
-  aspect-ratio: 1;
   box-sizing: border-box;
   border-radius: 100%;
   background-color: rgba(255, 255, 255, 0.1);
@@ -77,6 +95,17 @@ body {
   padding: 0;
   cursor: pointer;
   font-size: 20px;
+}
+
+.calculator__button:not([type="submit"]) {
+  width: calc(25% - 12px);
+  aspect-ratio: 1;
+}
+
+.calculator__button[type="submit"] {
+  width: 100%;
+  border-radius: 100px;
+  padding: 5% 0;
 }
 
 .calculator__button:hover {
@@ -110,43 +139,43 @@ body {
   color: #bba596;
 }
 
-.calculator__button--number-7 {
+.calculator__button[aria-keyshortcuts="7"] {
   order: 3;
 }
 
-.calculator__button--number-8 {
+.calculator__button[aria-keyshortcuts="8"] {
   order: 4;
 }
 
-.calculator__button--number-9 {
+.calculator__button[aria-keyshortcuts="9"] {
   order: 5;
 }
 
-.calculator__button--number-6 {
+.calculator__button[aria-keyshortcuts="6"] {
   order: 7;
 }
 
-.calculator__button--number-5 {
+.calculator__button[aria-keyshortcuts="5"] {
   order: 8;
 }
 
-.calculator__button--number-4 {
+.calculator__button[aria-keyshortcuts="4"] {
   order: 9;
 }
 
-.calculator__button--number-3 {
+.calculator__button[aria-keyshortcuts="3"] {
   order: 11;
 }
 
-.calculator__button--number-2 {
+.calculator__button[aria-keyshortcuts="2"] {
   order: 12;
 }
 
-.calculator__button--number-1 {
+.calculator__button[aria-keyshortcuts="1"] {
   order: 13;
 }
 
-.calculator__button--number-0 {
+.calculator__button[aria-keyshortcuts="0"] {
   order: 15;
   margin-right: 25%;
   margin-left: 25%;
