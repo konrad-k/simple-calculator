@@ -1,8 +1,8 @@
 {
-    "name": "konrad/php-sample",
+    "name": "konrad/calculator",
     "autoload": {
         "psr-4": {
-            "Konrad\\PhpSample\\": "src/"
+            "Konrad\\calculator\\": "src/"
         }
     },
     "authors": [

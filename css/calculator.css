@@ -38,6 +38,7 @@ body {
   font-size: 30px;
   color: rgba(196, 208, 187);
   margin: 25px 0;
+  min-height: 36px;
 }
 
 .calculator__input:focus {
@@ -49,6 +50,7 @@ body {
   font-size: 20px;
   color: rgba(196, 208, 187, 0.5);
   margin: 25px 0 75px;
+  min-height: 24px;
 }
 
 .calculator__buttons {
@@ -150,18 +152,18 @@ body {
   margin-left: 25%;
 }
 
-.calculator__button--operation--plus {
+.calculator__button--operation--add {
   order: 14;
 }
 
-.calculator__button--operation--minus {
+.calculator__button--operation--subtract {
   order: 10;
 }
 
-.calculator__button--operation--multiplication {
+.calculator__button--operation--multiply {
   order: 6;
 }
 
-.calculator__button--operation--division {
+.calculator__button--operation--divide {
   order: 2;
 }
