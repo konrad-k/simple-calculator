@@ -17,7 +17,6 @@ To use the calculator, run the `index.php` script from the command line. For exa
 php -S localhost:8000
 ```
 
-
 ## Contains:
 - PHP code to include the `calculator.php` file, which contains the HTML logic for the calculator.
 - A link to the `calculations.php` page, where users can view previous calculations.
@@ -37,3 +36,5 @@ document.addEventListener('DOMContentLoaded', () => {
   const calculator = new Calculator({element: '.calculator'});
   calculator.init();
 });
+
+### Wordpress plugin with shortcode support
